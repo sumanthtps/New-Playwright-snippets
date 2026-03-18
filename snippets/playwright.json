@@ -296,7 +296,7 @@
     },
     "page.isVisible()": {
         "prefix": "p-isv",
-        "description": "Selector is visble?",
+        "description": "Selector is visible?",
         "body": [
             "await this.page.locator(${1:selector}).isVisible();"
         ]
@@ -324,7 +324,7 @@
     },
     "page.isDisabled()": {
         "prefix": "p-isd",
-        "description": "Selector is diabled?",
+        "description": "Selector is disabled?",
         "body": [
             "await this.page.locator(${1:selector}).isDisabled();"
         ]
@@ -345,7 +345,7 @@
     },
     "page.uncheck()": {
         "prefix": "p-uchk",
-        "description": "Check the selector",
+        "description": "Uncheck the selector",
         "body": [
             "await this.page.locator(${1:selector}).uncheck();"
         ]
@@ -363,7 +363,7 @@
     },
     "Navigate to new popup": {
         "prefix": "p-newPopup",
-        "description": "Navigate to new tab",
+        "description": "Navigate to new popup",
         "body": [
             "const [${2:newPopup}] = await Promise.all([",
             "\tthis.page.waitForEvent('popup'),",
@@ -593,7 +593,7 @@
     },
     "page.getByTitle": {
         "prefix": "p-get-title",
-        "description": "Playwright ",
+        "description": "Playwright locate an element by its title attribute",
         "body": [
             "await this.page.getByTitle($1);"
         ]
@@ -648,7 +648,7 @@
     },
     "Element screenshot": {
         "prefix": "p-screenshot-element",
-        "description": "Playwright Full page screenshots",
+        "description": "Playwright element screenshot",
         "body": [
             "await this.page.locator(${1:selector}).screenshot({ path: '${2:screenshot.png}' });"
         ]
@@ -782,7 +782,7 @@
     "browserContext.unroute": {
         "prefix": "p-bc-unroute",
         "body": "await context.unroute('$0');",
-        "description": "Removes registered route of a page withing the browser context"
+        "description": "Removes registered route of a page within the browser context"
     },
     "browserContext.on('close')": {
         "prefix": "p-bc-on-close",
@@ -852,7 +852,7 @@
     "page.bringToFront": {
         "prefix": "p-bringToFront",
         "body": "await this.page.bringToFront();",
-        "description": "Actives the corresponding tab of the page"
+        "description": "Activates the corresponding tab of the page"
     },
     "page.close": {
         "prefix": "p-close",
@@ -1034,7 +1034,7 @@
     "page.on('requestfinished')": {
         "prefix": "p-on-requestfinished",
         "body": [
-            "page.on('requestfailed', request => {",
+            "page.on('requestfinished', request => {",
             "\t${0:console.log(request.url());}",
             "});"
         ],

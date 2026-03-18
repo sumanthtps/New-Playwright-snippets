@@ -30,7 +30,7 @@ This Visual Studio Code extension adds predefined useful code snippets for 🎭 
 
 1. Open **Visual Studio Code**.
 2. Go to **Extensions** view by clicking on the Extensions icon in the Activity Bar on the side of the window or using the keyboard shortcut `Ctrl+Shift+X` (Windows/Linux) or `Cmd+Shift+X` (Mac).
-3. Search for "Playwright Snippets Suite" in the Extensions view search box.
+3. Search for "Playwright Snippets 2026" in the Extensions view search box.
 4. Click on the **Install** button to install the extension.
 5. Reload Visual Studio Code to enable the extension.
 
