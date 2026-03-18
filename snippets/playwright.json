@@ -1,22 +1,4 @@
 {
-    "Playwright import": {
-        "prefix": "m-imp",
-        "description": "Imports Playwright's test libraries",
-        "body": [
-            "",
-            "import { test } from '@playwright/test';",
-            "import { Team } from '@paeng/playwright-teams-info';",
-            "import {",
-            "EnvironmentType,",
-            "integrationTest,",
-            "RunEnvironment,",
-            "RunGeo,",
-            "RunType,",
-            "Severity,",
-            "} from '@paeng/playwright-solution';",
-            ""
-        ]
-    },
     "Playwright describe block": {
         "prefix": "p-td",
         "description": "Playwright describe block",
@@ -43,12 +25,12 @@
         "body": [
             "integrationTest(",
             "    {",
-            "      envTypes: [EnvironmentType.MakerShell],",
+            "      envTypes: [EnvironmentType.${1:env}],",
             "      runTypes: [RunType.Nightly],",
             "      runEnvironments: [[RunEnvironment.Test, Severity.S3]],",
             "      runGeos: [RunGeo.USA],",
             "    },",
-            "    Team.${1|TableDesigner,ViewDesigner|},",
+            "    Team.${1|Team1,Team2|},",
             "    '${2:title}',",
             "    async ({ page }) => {",
             "       ${3:testSteps}",
@@ -446,8 +428,6 @@
         "body": [
             "import { Page } from '@playwright/test';",
             "",
-            "import { navigateToUrl } from '@paeng/playwright-solution';",
-            "",
             "export class ${1:ClassName} {",
             "  readonly page: Page;",
             "",
@@ -465,8 +445,6 @@
         "description": "Playwright Page Object Model (POM) class structure with extended class",
         "body": [
             "import { Page } from '@playwright/test';",
-            "",
-            "import { navigateToUrl } from '@paeng/playwright-solution';",
             "",
             "export class ${1:ClassName} extends ${2:extendClassName} {",
             "  constructor(page: Page) {",
