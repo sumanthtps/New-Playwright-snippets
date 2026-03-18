@@ -1,4 +1,4 @@
-<h1 align="center">Playwright Snippets 2024🎭</h1>
+<h1 align="center">Playwright Snippets 2026🎭</h1>
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=sumanthtps.playwright-test-code-snippets"><img src="https://vsmarketplacebadges.dev/version-short/sumanthtps.playwright-test-code-snippets.svg" alt="Marketplace"></a>
