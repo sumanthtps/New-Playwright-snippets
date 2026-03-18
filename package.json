@@ -5,18 +5,18 @@
   "author": "Sumanth TP",
   "publisher": "sumanthtps",
   "description": "A plethora of new advanced playwright snippets in the vs market place",
-  "homepage": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode",
+  "homepage": "https://github.com/sumanthtps/New-Playwright-snippets",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode.git"
+    "url": "https://github.com/sumanthtps/New-Playwright-snippets.git"
   },
-  "bugs": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode/issues",
+  "bugs": "https://github.com/sumanthtps/New-Playwright-snippets/issues",
   "icon": "images/playwright-logo.png",
   "galleryBanner": {
     "color": "#2b3137",
     "theme": "dark"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -27,7 +27,9 @@
     "snippets",
     "playwright",
     "playwright-test",
-    "playwright-core"
+    "playwright-core",
+    "testing",
+    "automation"
   ],
   "contributes": {
     "snippets": [
@@ -48,6 +50,11 @@
         "path": "./snippets/playwright.json"
       }
     ]
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\"",
+    "package": "vsce package",
+    "build": "npm run package"
   },
   "devDependencies": {
     "@vscode/vsce": "^3.7.1",
