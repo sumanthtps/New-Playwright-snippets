@@ -554,7 +554,6 @@
             "await this.page.getByTestId($1);"
         ]
     },
-
     "page.getByPlaceholder": {
         "prefix": "p-get-p",
         "description": "Playwright locate an input by placeholder",
@@ -588,11 +587,10 @@
         "description": "Playwright full test block",
         "body": [
             "test.describe(() => {",
-                "test.use({ colorScheme: 'dark'});",
-
-                "test('one', async ({ page}) => {",
-                  "${1:codeBlock}",
-                "});",
+            "test.use({ colorScheme: 'dark'});",
+            "test('one', async ({ page}) => {",
+            "${1:codeBlock}",
+            "});",
             "});"
         ]
     },
@@ -601,8 +599,8 @@
         "description": "Playwright save HAR file",
         "body": [
             "const context = await browser.newContext({",
-                "recordHar: { path: '${1:harFile.har.zip}'",
-                "}",
+            "recordHar: { path: '${1:harFile.har.zip}'",
+            "}",
             "});"
         ]
     },
@@ -611,9 +609,9 @@
         "description": "Playwright sample route snippet",
         "body": [
             "await this.page.route('${1:**/*}', async route => {",
-                "const headers = await route.request().allHeaders();",
-                "delete headers['if-none-match'];",
-                "route.fallback({ headers });",
+            "const headers = await route.request().allHeaders();",
+            "delete headers['if-none-match'];",
+            "route.fallback({ headers });",
             "});"
         ]
     },
@@ -1080,6 +1078,1583 @@
         "description": "Playwright page locator",
         "body": [
             "await this.page.locator('${1:selector}').filter({ ${2|hasNotText,hasNot|}: $3 });"
+        ]
+    },
+    "locator.all()": {
+        "prefix": "p-loc-all",
+        "description": "Returns array of locators for all matching elements",
+        "body": [
+            "const ${1:items} = await this.page.locator('${2:selector}').all();"
+        ]
+    },
+    "locator.allInnerTexts()": {
+        "prefix": "p-loc-ait",
+        "description": "Returns array of innerText values for all matching elements",
+        "body": [
+            "const ${1:texts} = await this.page.locator('${2:selector}').allInnerTexts();"
+        ]
+    },
+    "locator.allTextContents()": {
+        "prefix": "p-loc-atc",
+        "description": "Returns array of textContent values for all matching elements",
+        "body": [
+            "const ${1:texts} = await this.page.locator('${2:selector}').allTextContents();"
+        ]
+    },
+    "locator.and()": {
+        "prefix": "p-loc-and",
+        "description": "Creates a locator matching both this and another locator (AND)",
+        "body": [
+            "const ${1:locator} = this.page.locator('${2:selector}').and(this.page.locator('${3:selector2}'));"
+        ]
+    },
+    "locator.or()": {
+        "prefix": "p-loc-or",
+        "description": "Creates a locator matching either this or another locator (OR)",
+        "body": [
+            "const ${1:locator} = this.page.locator('${2:selector}').or(this.page.locator('${3:selector2}'));"
+        ]
+    },
+    "locator.first()": {
+        "prefix": "p-loc-first",
+        "description": "Returns locator pointing to the first matching element",
+        "body": [
+            "await this.page.locator('${1:selector}').first().$0"
+        ]
+    },
+    "locator.last()": {
+        "prefix": "p-loc-last",
+        "description": "Returns locator pointing to the last matching element",
+        "body": [
+            "await this.page.locator('${1:selector}').last().$0"
+        ]
+    },
+    "locator.nth()": {
+        "prefix": "p-loc-nth",
+        "description": "Returns locator pointing to the n-th matching element (zero-based)",
+        "body": [
+            "await this.page.locator('${1:selector}').nth(${2:0}).$0"
+        ]
+    },
+    "locator.clear()": {
+        "prefix": "p-loc-clear",
+        "description": "Clears the input field",
+        "body": [
+            "await this.page.locator('${1:selector}').clear();"
+        ]
+    },
+    "locator.blur()": {
+        "prefix": "p-loc-blur",
+        "description": "Calls blur on the element, removing focus",
+        "body": [
+            "await this.page.locator('${1:selector}').blur();"
+        ]
+    },
+    "locator.boundingBox()": {
+        "prefix": "p-loc-bbox",
+        "description": "Returns the bounding box of the element (x, y, width, height)",
+        "body": [
+            "const ${1:box} = await this.page.locator('${2:selector}').boundingBox();"
+        ]
+    },
+    "locator.inputValue()": {
+        "prefix": "p-loc-ival",
+        "description": "Returns the value of an input, textarea or select element",
+        "body": [
+            "const ${1:value} = await this.page.locator('${2:selector}').inputValue();"
+        ]
+    },
+    "locator.innerHTML()": {
+        "prefix": "p-loc-ihtml",
+        "description": "Returns the element.innerHTML value",
+        "body": [
+            "const ${1:html} = await this.page.locator('${2:selector}').innerHTML();"
+        ]
+    },
+    "locator.pressSequentially()": {
+        "prefix": "p-loc-pseq",
+        "description": "Types text into a field key-by-key, as if typed on a real keyboard",
+        "body": [
+            "await this.page.locator('${1:selector}').pressSequentially('${2:text}', { delay: ${3:50} });"
+        ]
+    },
+    "locator.press()": {
+        "prefix": "p-loc-press",
+        "description": "Focuses the element and presses a key",
+        "body": [
+            "await this.page.locator('${1:selector}').press('${2:Enter}');"
+        ]
+    },
+    "locator.dragTo()": {
+        "prefix": "p-loc-drag",
+        "description": "Drags the source locator to a target locator",
+        "body": [
+            "await this.page.locator('${1:source}').dragTo(this.page.locator('${2:target}'));"
+        ]
+    },
+    "locator.tap()": {
+        "prefix": "p-loc-tap",
+        "description": "Performs a touch tap on the element",
+        "body": [
+            "await this.page.locator('${1:selector}').tap();"
+        ]
+    },
+    "locator.selectText()": {
+        "prefix": "p-loc-stxt",
+        "description": "Selects all text inside the element",
+        "body": [
+            "await this.page.locator('${1:selector}').selectText();"
+        ]
+    },
+    "locator.highlight()": {
+        "prefix": "p-loc-hl",
+        "description": "Highlights the matching element on the screen (useful for debugging)",
+        "body": [
+            "await this.page.locator('${1:selector}').highlight();"
+        ]
+    },
+    "locator.dispatchEvent()": {
+        "prefix": "p-loc-de",
+        "description": "Dispatches an event on the element",
+        "body": [
+            "await this.page.locator('${1:selector}').dispatchEvent('${2:click}');"
+        ]
+    },
+    "locator.evaluate()": {
+        "prefix": "p-loc-eval",
+        "description": "Executes JavaScript in the page, passing the element as the first argument",
+        "body": [
+            "const ${1:result} = await this.page.locator('${2:selector}').evaluate(${3:el} => ${4:el.textContent});"
+        ]
+    },
+    "locator.evaluateAll()": {
+        "prefix": "p-loc-evalall",
+        "description": "Executes JavaScript with all matching elements as an array argument",
+        "body": [
+            "const ${1:results} = await this.page.locator('${2:selector}').evaluateAll(${3:els} => ${4:els.map(el => el.textContent)});"
+        ]
+    },
+    "locator.contentFrame()": {
+        "prefix": "p-loc-cf",
+        "description": "Returns a FrameLocator pointing to the same iframe as this locator",
+        "body": [
+            "const ${1:frame} = this.page.locator('${2:iframe}').contentFrame();"
+        ]
+    },
+    "locator.ariaSnapshot()": {
+        "prefix": "p-loc-aria",
+        "description": "Captures the ARIA snapshot of the element",
+        "body": [
+            "const ${1:snapshot} = await this.page.locator('${2:selector}').ariaSnapshot();"
+        ]
+    },
+    "locator.screenshot()": {
+        "prefix": "p-loc-ss",
+        "description": "Takes a screenshot of the matching element",
+        "body": [
+            "await this.page.locator('${1:selector}').screenshot({ path: '${2:element.png}' });"
+        ]
+    },
+    "page.evaluate()": {
+        "prefix": "p-eval",
+        "description": "Executes a JavaScript function in the page context and returns the result",
+        "body": [
+            "const ${1:result} = await this.page.evaluate(() => {",
+            "\treturn $2;",
+            "});"
+        ]
+    },
+    "page.evaluateHandle()": {
+        "prefix": "p-evalh",
+        "description": "Executes a function in the page context, returns a JSHandle",
+        "body": [
+            "const ${1:handle} = await this.page.evaluateHandle(() => {",
+            "\treturn $2;",
+            "});"
+        ]
+    },
+    "page.addInitScript()": {
+        "prefix": "p-ais",
+        "description": "Adds a script to be evaluated before any page scripts run",
+        "body": [
+            "await this.page.addInitScript(() => {",
+            "\t$0",
+            "});"
+        ]
+    },
+    "page.setContent()": {
+        "prefix": "p-setcontent",
+        "description": "Sets the full HTML content of the page",
+        "body": [
+            "await this.page.setContent(`${1:<html><body>$2</body></html>}`);"
+        ]
+    },
+    "page.dragAndDrop()": {
+        "prefix": "p-dnd",
+        "description": "Drags source element to target element",
+        "body": [
+            "await this.page.dragAndDrop('${1:sourceSelector}', '${2:targetSelector}');"
+        ]
+    },
+    "page.emulateMedia()": {
+        "prefix": "p-emedia",
+        "description": "Emulates a CSS media type, color scheme, or reduced motion preference",
+        "body": [
+            "await this.page.emulateMedia({ ${1|media,colorScheme,reducedMotion,forcedColors|}: '${2}' });"
+        ]
+    },
+    "page.exposeFunction()": {
+        "prefix": "p-expfn",
+        "description": "Adds a function to the page's window object, callable from the browser",
+        "body": [
+            "await this.page.exposeFunction('${1:functionName}', async (${2:arg}) => {",
+            "\treturn $3;",
+            "});"
+        ]
+    },
+    "page.exposeBinding()": {
+        "prefix": "p-expbind",
+        "description": "Adds a function to the page's window, receiving source info as first arg",
+        "body": [
+            "await this.page.exposeBinding('${1:bindingName}', (source, ${2:arg}) => {",
+            "\treturn $3;",
+            "});"
+        ]
+    },
+    "page.frameLocator()": {
+        "prefix": "p-fl",
+        "description": "Returns a FrameLocator object to interact with elements inside an iframe",
+        "body": [
+            "const ${1:frame} = this.page.frameLocator('${2:iframe}');"
+        ]
+    },
+    "page.addLocatorHandler()": {
+        "prefix": "p-alh",
+        "description": "Auto-handles overlay elements (cookie banners, modals) that block interactions",
+        "body": [
+            "await this.page.addLocatorHandler(",
+            "\tthis.page.locator('${1:overlaySelector}'),",
+            "\tasync () => {",
+            "\t\t$2",
+            "\t}",
+            ");"
+        ]
+    },
+    "page.routeFromHAR()": {
+        "prefix": "p-routehar",
+        "description": "Serves network requests from a HAR file (recorded traffic replay)",
+        "body": [
+            "await this.page.routeFromHAR('${1:path/to/file.har}', { update: ${2|false,true|} });"
+        ]
+    },
+    "page.unrouteAll()": {
+        "prefix": "p-unroute",
+        "description": "Removes all routes created with page.route() and page.routeFromHAR()",
+        "body": [
+            "await this.page.unrouteAll();"
+        ]
+    },
+    "page.setViewportSize()": {
+        "prefix": "p-svp",
+        "description": "Sets the page viewport size",
+        "body": [
+            "await this.page.setViewportSize({ width: ${1:1280}, height: ${2:720} });"
+        ]
+    },
+    "page.pause()": {
+        "prefix": "p-pause",
+        "description": "Pauses script execution — opens Playwright Inspector for debugging",
+        "body": [
+            "await this.page.pause();"
+        ]
+    },
+    "page.reload()": {
+        "prefix": "p-reload",
+        "description": "Reloads the page",
+        "body": [
+            "await this.page.reload();"
+        ]
+    },
+    "page.isClosed()": {
+        "prefix": "p-iclosed",
+        "description": "Returns true if the page has been closed",
+        "body": [
+            "const ${1:closed} = this.page.isClosed();"
+        ]
+    },
+    "page.setDefaultTimeout()": {
+        "prefix": "p-sdto",
+        "description": "Sets the default timeout for all page actions and assertions",
+        "body": [
+            "this.page.setDefaultTimeout(${1:30000});"
+        ]
+    },
+    "page.setExtraHTTPHeaders()": {
+        "prefix": "p-sethdrs",
+        "description": "Sets extra HTTP headers to be sent with every request from this page",
+        "body": [
+            "await this.page.setExtraHTTPHeaders({",
+            "\t'${1:Authorization}': '${2:Bearer token}'",
+            "});"
+        ]
+    },
+    "page.waitForURL()": {
+        "prefix": "p-wfurl",
+        "description": "Waits for the page to navigate to a URL matching a string, regex, or predicate",
+        "body": [
+            "await this.page.waitForURL('${1:**/target-url**}');"
+        ]
+    },
+    "browserContext.storageState()": {
+        "prefix": "p-bc-storage",
+        "description": "Returns cookies, localStorage, and sessionStorage as JSON (for auth reuse)",
+        "body": [
+            "const ${1:state} = await context.storageState({ path: '${2:storageState.json}' });"
+        ]
+    },
+    "browserContext.addCookies()": {
+        "prefix": "p-bc-addcookies",
+        "description": "Adds cookies to the browser context",
+        "body": [
+            "await context.addCookies([{",
+            "\tname: '${1:cookieName}',",
+            "\tvalue: '${2:cookieValue}',",
+            "\tdomain: '${3:.example.com}',",
+            "\tpath: '${4:/}'",
+            "}]);"
+        ]
+    },
+    "browserContext.clearCookies()": {
+        "prefix": "p-bc-clrcookies",
+        "description": "Removes cookies from the browser context",
+        "body": [
+            "await context.clearCookies();"
+        ]
+    },
+    "browserContext.grantPermissions()": {
+        "prefix": "p-bc-gperm",
+        "description": "Grants browser permissions (geolocation, camera, notifications, etc.)",
+        "body": [
+            "await context.grantPermissions(['${1|geolocation,camera,microphone,notifications,clipboard-read,clipboard-write|}']);"
+        ]
+    },
+    "browserContext.clearPermissions()": {
+        "prefix": "p-bc-clrperm",
+        "description": "Removes all permission overrides for the browser context",
+        "body": [
+            "await context.clearPermissions();"
+        ]
+    },
+    "browserContext.setGeolocation()": {
+        "prefix": "p-bc-setgeo",
+        "description": "Sets the geolocation for the browser context",
+        "body": [
+            "await context.setGeolocation({ latitude: ${1:51.5074}, longitude: ${2:-0.1278} });"
+        ]
+    },
+    "browserContext.setOffline()": {
+        "prefix": "p-bc-offline",
+        "description": "Toggles network offline mode for the browser context",
+        "body": [
+            "await context.setOffline(${1|true,false|});"
+        ]
+    },
+    "browserContext.addInitScript()": {
+        "prefix": "p-bc-ais",
+        "description": "Adds a script evaluated before page scripts in every page of this context",
+        "body": [
+            "await context.addInitScript(() => {",
+            "\t$0",
+            "});"
+        ]
+    },
+    "browserContext.exposeFunction()": {
+        "prefix": "p-bc-expfn",
+        "description": "Adds a function to window in every page of this context",
+        "body": [
+            "await context.exposeFunction('${1:functionName}', async (${2:arg}) => {",
+            "\treturn $3;",
+            "});"
+        ]
+    },
+    "browserContext.routeFromHAR()": {
+        "prefix": "p-bc-routehar",
+        "description": "Routes all context requests from a HAR file",
+        "body": [
+            "await context.routeFromHAR('${1:path/to/file.har}', { update: ${2|false,true|} });"
+        ]
+    },
+    "browserContext.unrouteAll()": {
+        "prefix": "p-bc-unroute-all",
+        "description": "Removes all routes registered with context.route()",
+        "body": [
+            "await context.unrouteAll();"
+        ]
+    },
+    "browserContext.waitForEvent()": {
+        "prefix": "p-bc-wfe",
+        "description": "Waits for an event to be fired on the browser context",
+        "body": [
+            "const ${1:event} = await context.waitForEvent('${2|page,close,weberror|}');"
+        ]
+    },
+    "browserContext.setDefaultTimeout()": {
+        "prefix": "p-bc-sdto",
+        "description": "Sets the default timeout for the entire browser context",
+        "body": [
+            "context.setDefaultTimeout(${1:30000});"
+        ]
+    },
+    "browserContext.newContext with storageState": {
+        "prefix": "p-bc-auth",
+        "description": "Creates a browser context with saved auth state (for login reuse)",
+        "body": [
+            "const context = await browser.newContext({",
+            "\tstorageState: '${1:storageState.json}'",
+            "});"
+        ]
+    },
+    "route.fulfill()": {
+        "prefix": "p-route-fulfill",
+        "description": "Fulfills the intercepted route with a custom response",
+        "body": [
+            "await this.page.route('${1:**/api/**}', async route => {",
+            "\tawait route.fulfill({",
+            "\t\tstatus: ${2:200},",
+            "\t\tcontentType: '${3:application/json}',",
+            "\t\tbody: JSON.stringify(${4:{ data: 'mocked' }})",
+            "\t});",
+            "});"
+        ]
+    },
+    "route.abort()": {
+        "prefix": "p-route-abort",
+        "description": "Aborts the intercepted network request",
+        "body": [
+            "await this.page.route('${1:**/api/**}', async route => {",
+            "\tawait route.abort('${2|failed,aborted,timedout,accessdenied,connectionrefused,connectionreset,internetdisconnected,namenotresolved,connectionclosed,blockedbyclient|}');",
+            "});"
+        ]
+    },
+    "route.continue()": {
+        "prefix": "p-route-continue",
+        "description": "Continues the intercepted request with optional modifications",
+        "body": [
+            "await this.page.route('${1:**/api/**}', async route => {",
+            "\tawait route.continue({",
+            "\t\theaders: { ...route.request().headers(), '${2:X-Custom-Header}': '${3:value}' }",
+            "\t});",
+            "});"
+        ]
+    },
+    "route.fallback()": {
+        "prefix": "p-route-fallback",
+        "description": "Continues the request and allows subsequent route handlers to handle it",
+        "body": [
+            "await this.page.route('${1:**/api/**}', async route => {",
+            "\tawait route.fallback();",
+            "});"
+        ]
+    },
+    "route.fetch()": {
+        "prefix": "p-route-fetch",
+        "description": "Performs the request and returns the response for modification before fulfilling",
+        "body": [
+            "await this.page.route('${1:**/api/**}', async route => {",
+            "\tconst response = await route.fetch();",
+            "\tconst body = await response.json();",
+            "\t$2",
+            "\tawait route.fulfill({ response, body: JSON.stringify(body) });",
+            "});"
+        ]
+    },
+    "page.clock.install()": {
+        "prefix": "p-clock-install",
+        "description": "Installs fake clock — overrides Date, setTimeout, setInterval, etc.",
+        "body": [
+            "await this.page.clock.install({ time: new Date('${1:2024-01-01T00:00:00}') });"
+        ]
+    },
+    "page.clock.setFixedTime()": {
+        "prefix": "p-clock-fixed",
+        "description": "Makes Date.now() and new Date() return a fixed time",
+        "body": [
+            "await this.page.clock.setFixedTime(new Date('${1:2024-01-01T00:00:00}'));"
+        ]
+    },
+    "page.clock.fastForward()": {
+        "prefix": "p-clock-ff",
+        "description": "Fast-forwards the clock, firing timers once without running in between",
+        "body": [
+            "await this.page.clock.fastForward(${1:1000});"
+        ]
+    },
+    "page.clock.runFor()": {
+        "prefix": "p-clock-run",
+        "description": "Advances the clock by the given amount, firing all timers along the way",
+        "body": [
+            "await this.page.clock.runFor(${1:1000});"
+        ]
+    },
+    "page.clock.pauseAt()": {
+        "prefix": "p-clock-pause",
+        "description": "Advances time to the target and pauses — timers do not fire automatically",
+        "body": [
+            "await this.page.clock.pauseAt(new Date('${1:2024-01-01T12:00:00}'));"
+        ]
+    },
+    "page.clock.resume()": {
+        "prefix": "p-clock-resume",
+        "description": "Resumes timer execution after a pauseAt() call",
+        "body": [
+            "await this.page.clock.resume();"
+        ]
+    },
+    "context.tracing.start()": {
+        "prefix": "p-trace-start",
+        "description": "Starts recording a Playwright trace (screenshots, snapshots, sources)",
+        "body": [
+            "await context.tracing.start({ screenshots: true, snapshots: true, sources: true });"
+        ]
+    },
+    "context.tracing.stop()": {
+        "prefix": "p-trace-stop",
+        "description": "Stops tracing and saves the trace to a zip file",
+        "body": [
+            "await context.tracing.stop({ path: '${1:trace.zip}' });"
+        ]
+    },
+    "context.tracing.startChunk()": {
+        "prefix": "p-trace-chunk",
+        "description": "Starts a new trace chunk (to split traces by test)",
+        "body": [
+            "await context.tracing.startChunk({ title: '${1:test name}' });"
+        ]
+    },
+    "context.tracing.stopChunk()": {
+        "prefix": "p-trace-stopchunk",
+        "description": "Stops the current trace chunk and saves it",
+        "body": [
+            "await context.tracing.stopChunk({ path: '${1:trace.zip}' });"
+        ]
+    },
+    "Full tracing setup": {
+        "prefix": "p-trace-full",
+        "description": "Complete tracing setup with beforeAll/afterAll hooks",
+        "body": [
+            "test.beforeAll(async ({ browser }) => {",
+            "\tcontext = await browser.newContext();",
+            "\tawait context.tracing.start({ screenshots: true, snapshots: true });",
+            "});",
+            "",
+            "test.afterAll(async () => {",
+            "\tawait context.tracing.stop({ path: '${1:trace.zip}' });",
+            "\tawait context.close();",
+            "});"
+        ]
+    },
+    "Video recording context": {
+        "prefix": "p-video-ctx",
+        "description": "Creates a browser context with video recording enabled",
+        "body": [
+            "const context = await browser.newContext({",
+            "\trecordVideo: {",
+            "\t\tdir: '${1:videos/}',",
+            "\t\tsize: { width: ${2:1280}, height: ${3:720} }",
+            "\t}",
+            "});"
+        ]
+    },
+    "video.path()": {
+        "prefix": "p-video-path",
+        "description": "Returns the file system path to the recorded video",
+        "body": [
+            "const ${1:videoPath} = await page.video().path();"
+        ]
+    },
+    "video.saveAs()": {
+        "prefix": "p-video-save",
+        "description": "Saves the recorded video to a specific path",
+        "body": [
+            "await page.video().saveAs('${1:path/to/video.webm}');"
+        ]
+    },
+    "expect.toBeAttached()": {
+        "prefix": "p-e-attached",
+        "description": "Asserts that the element is attached to the DOM",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeAttached();"
+        ]
+    },
+    "expect.toBeEmpty()": {
+        "prefix": "p-e-empty",
+        "description": "Asserts that the element has no text content or that an input is empty",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeEmpty();"
+        ]
+    },
+    "expect.toBeFocused()": {
+        "prefix": "p-e-focused",
+        "description": "Asserts that the element has focus",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeFocused();"
+        ]
+    },
+    "expect.toBeInViewport()": {
+        "prefix": "p-e-viewport",
+        "description": "Asserts that the element is visible within the viewport",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toBeInViewport();"
+        ]
+    },
+    "expect.toHaveClass()": {
+        "prefix": "p-e-class",
+        "description": "Asserts that the element has a specific CSS class",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveClass(/${2:className}/);"
+        ]
+    },
+    "expect.toHaveCSS()": {
+        "prefix": "p-e-css",
+        "description": "Asserts that the element has a specific CSS property value",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveCSS('${2:property}', '${3:value}');"
+        ]
+    },
+    "expect.toHaveId()": {
+        "prefix": "p-e-id",
+        "description": "Asserts that the element has a specific id attribute",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveId('${2:element-id}');"
+        ]
+    },
+    "expect.toHaveValue()": {
+        "prefix": "p-e-val",
+        "description": "Asserts that an input element has a specific value",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveValue('${2:value}');"
+        ]
+    },
+    "expect.toHaveValues()": {
+        "prefix": "p-e-vals",
+        "description": "Asserts that a multi-select element has specific selected values",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveValues(['${2:value1}', '${3:value2}']);"
+        ]
+    },
+    "expect.toHaveAccessibleName()": {
+        "prefix": "p-e-accname",
+        "description": "Asserts that the element has a specific accessible name",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveAccessibleName('${2:name}');"
+        ]
+    },
+    "expect.toHaveAccessibleDescription()": {
+        "prefix": "p-e-accdesc",
+        "description": "Asserts that the element has a specific accessible description",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveAccessibleDescription('${2:description}');"
+        ]
+    },
+    "expect.toHaveRole()": {
+        "prefix": "p-e-role",
+        "description": "Asserts that the element has a specific ARIA role",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveRole('${2|button,link,heading,listitem,checkbox,radio,option,menuitem,tab,dialog,alert,img,textbox,combobox,grid,row,cell|}');"
+        ]
+    },
+    "expect.toHaveJSProperty()": {
+        "prefix": "p-e-jsprop",
+        "description": "Asserts that the element has a specific JavaScript property",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveJSProperty('${2:property}', ${3:value});"
+        ]
+    },
+    "expect.toMatchAriaSnapshot()": {
+        "prefix": "p-e-aria",
+        "description": "Asserts the ARIA snapshot of the element matches the expected structure",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toMatchAriaSnapshot(`",
+            "  - ${2:role} \"${3:name}\"",
+            "`);"
+        ]
+    },
+    "expect.toBeOK()": {
+        "prefix": "p-e-ok",
+        "description": "Asserts that a Response has a status code in the 200-299 range",
+        "body": [
+            "await expect(${1:response}).toBeOK();"
+        ]
+    },
+    "expect.poll()": {
+        "prefix": "p-e-poll",
+        "description": "Polls a function until it passes the assertion (for dynamic values)",
+        "body": [
+            "await expect.poll(async () => {",
+            "\treturn $1;",
+            "}).${2:toBe}(${3:expected});"
+        ]
+    },
+    "expect.toPass()": {
+        "prefix": "p-e-pass",
+        "description": "Retries a block of code until all assertions inside pass",
+        "body": [
+            "await expect(async () => {",
+            "\t$1",
+            "}).toPass();"
+        ]
+    },
+    "APIRequest.newContext()": {
+        "prefix": "p-api-ctx",
+        "description": "Creates an APIRequestContext for making HTTP requests",
+        "body": [
+            "const ${1:request} = await playwright.request.newContext({",
+            "\tbaseURL: '${2:https://api.example.com}',",
+            "\textraHTTPHeaders: {",
+            "\t\t'Authorization': 'Bearer ${3:token}'",
+            "\t}",
+            "});"
+        ]
+    },
+    "apiRequest.get()": {
+        "prefix": "p-api-get",
+        "description": "Sends an HTTP GET request",
+        "body": [
+            "const ${1:response} = await request.get('${2:/endpoint}');",
+            "expect(${1:response}.ok()).toBeTruthy();",
+            "const ${3:body} = await ${1:response}.json();"
+        ]
+    },
+    "apiRequest.post()": {
+        "prefix": "p-api-post",
+        "description": "Sends an HTTP POST request with a JSON body",
+        "body": [
+            "const ${1:response} = await request.post('${2:/endpoint}', {",
+            "\tdata: {",
+            "\t\t$3",
+            "\t}",
+            "});",
+            "expect(${1:response}.ok()).toBeTruthy();"
+        ]
+    },
+    "apiRequest.put()": {
+        "prefix": "p-api-put",
+        "description": "Sends an HTTP PUT request with a JSON body",
+        "body": [
+            "const ${1:response} = await request.put('${2:/endpoint}', {",
+            "\tdata: {",
+            "\t\t$3",
+            "\t}",
+            "});",
+            "expect(${1:response}.ok()).toBeTruthy();"
+        ]
+    },
+    "apiRequest.patch()": {
+        "prefix": "p-api-patch",
+        "description": "Sends an HTTP PATCH request with a JSON body",
+        "body": [
+            "const ${1:response} = await request.patch('${2:/endpoint}', {",
+            "\tdata: {",
+            "\t\t$3",
+            "\t}",
+            "});",
+            "expect(${1:response}.ok()).toBeTruthy();"
+        ]
+    },
+    "apiRequest.delete()": {
+        "prefix": "p-api-del",
+        "description": "Sends an HTTP DELETE request",
+        "body": [
+            "const ${1:response} = await request.delete('${2:/endpoint}');",
+            "expect(${1:response}.ok()).toBeTruthy();"
+        ]
+    },
+    "apiRequest.fetch()": {
+        "prefix": "p-api-fetch",
+        "description": "Sends an HTTP request with full control over method, headers, and body",
+        "body": [
+            "const ${1:response} = await request.fetch('${2:/endpoint}', {",
+            "\tmethod: '${3|GET,POST,PUT,PATCH,DELETE|}',",
+            "\theaders: { 'Content-Type': 'application/json' },",
+            "\tdata: $4",
+            "});"
+        ]
+    },
+    "page.request.get()": {
+        "prefix": "p-req-get",
+        "description": "Sends a GET request using the page's request context (shares cookies/auth)",
+        "body": [
+            "const ${1:response} = await this.page.request.get('${2:/endpoint}');",
+            "const ${3:body} = await ${1:response}.json();"
+        ]
+    },
+    "page.request.post()": {
+        "prefix": "p-req-post",
+        "description": "Sends a POST request using the page's request context (shares cookies/auth)",
+        "body": [
+            "const ${1:response} = await this.page.request.post('${2:/endpoint}', {",
+            "\tdata: { $3 }",
+            "});"
+        ]
+    },
+    "test.only()": {
+        "prefix": "p-tonly",
+        "description": "Focuses only this test — all other tests are skipped",
+        "body": [
+            "test.only('${1:title}', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});"
+        ]
+    },
+    "test.skip()": {
+        "prefix": "p-tskip",
+        "description": "Skips this test unconditionally",
+        "body": [
+            "test.skip('${1:title}', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});"
+        ]
+    },
+    "test.skip() conditional": {
+        "prefix": "p-tskipc",
+        "description": "Skips the current test based on a runtime condition",
+        "body": [
+            "test.skip(${1:condition}, '${2:reason}');"
+        ]
+    },
+    "test.fail()": {
+        "prefix": "p-tfail",
+        "description": "Marks the test as expected to fail — test passes if it fails, fails if it passes",
+        "body": [
+            "test.fail('${1:title}', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});"
+        ]
+    },
+    "test.fixme()": {
+        "prefix": "p-tfixme",
+        "description": "Marks the test as broken and skips it — a reminder to fix it",
+        "body": [
+            "test.fixme('${1:title}', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});"
+        ]
+    },
+    "test.slow()": {
+        "prefix": "p-tslow",
+        "description": "Triples the test timeout — use for tests that are known to be slow",
+        "body": [
+            "test.slow();"
+        ]
+    },
+    "test.info()": {
+        "prefix": "p-tinfo",
+        "description": "Accesses runtime test information (title, annotations, attachments, etc.)",
+        "body": [
+            "const ${1:info} = test.info();",
+            "console.log(${1:info}.title);"
+        ]
+    },
+    "test.extend()": {
+        "prefix": "p-textend",
+        "description": "Creates a new test object with custom fixtures",
+        "body": [
+            "const ${1:test} = base.extend<{ ${2:fixtureName}: ${3:FixtureType} }>({",
+            "\t${2:fixtureName}: async ({ ${4:page} }, use) => {",
+            "\t\tconst ${5:fixture} = $6;",
+            "\t\tawait use(${5:fixture});",
+            "\t}",
+            "});"
+        ]
+    },
+    "test.describe.configure()": {
+        "prefix": "p-td-config",
+        "description": "Configures the describe group (mode: parallel/serial, retries, timeout)",
+        "body": [
+            "test.describe.configure({ mode: '${1|parallel,serial|}' });"
+        ]
+    },
+    "keyboard.down()": {
+        "prefix": "p-keyboard-down",
+        "description": "Dispatches a keydown event (key stays held down)",
+        "body": [
+            "await this.page.keyboard.down('${1:Shift}');"
+        ]
+    },
+    "keyboard.type()": {
+        "prefix": "p-keyboard-type",
+        "description": "Types text character by character, firing key events for each character",
+        "body": [
+            "await this.page.keyboard.type('${1:text}', { delay: ${2:50} });"
+        ]
+    },
+    "mouse.wheel()": {
+        "prefix": "p-mouse-wheel",
+        "description": "Dispatches a mouse wheel (scroll) event",
+        "body": [
+            "await this.page.mouse.wheel(${1:0}, ${2:300});"
+        ]
+    },
+    "touchscreen.tap()": {
+        "prefix": "p-touch-tap",
+        "description": "Dispatches a touchstart and touchend at the given coordinates",
+        "body": [
+            "await this.page.touchscreen.tap(${1:x}, ${2:y});"
+        ]
+    },
+    "frameLocator.locator()": {
+        "prefix": "p-fl-loc",
+        "description": "Locates an element inside an iframe using a CSS selector",
+        "body": [
+            "const ${1:element} = this.page.frameLocator('${2:iframe}').locator('${3:selector}');"
+        ]
+    },
+    "frameLocator.getByRole()": {
+        "prefix": "p-fl-role",
+        "description": "Locates an element inside an iframe by ARIA role",
+        "body": [
+            "const ${1:element} = this.page.frameLocator('${2:iframe}').getByRole('${3:button}', { name: '${4:name}' });"
+        ]
+    },
+    "Nested frameLocator": {
+        "prefix": "p-fl-nested",
+        "description": "Locates an element inside a nested iframe",
+        "body": [
+            "const ${1:element} = this.page",
+            "\t.frameLocator('${2:outerIframe}')",
+            "\t.frameLocator('${3:innerIframe}')",
+            "\t.locator('${4:selector}');"
+        ]
+    },
+    "dialog.accept()": {
+        "prefix": "p-dialog-accept",
+        "description": "Accepts the dialog — use inside a page.on('dialog') handler",
+        "body": [
+            "this.page.on('dialog', async dialog => {",
+            "\tconsole.log(dialog.message());",
+            "\tawait dialog.accept('${1:promptText}');",
+            "});"
+        ]
+    },
+    "dialog.dismiss()": {
+        "prefix": "p-dialog-dismiss",
+        "description": "Dismisses the dialog — use inside a page.on('dialog') handler",
+        "body": [
+            "this.page.on('dialog', async dialog => {",
+            "\tawait dialog.dismiss();",
+            "});"
+        ]
+    },
+    "page.accessibility.snapshot()": {
+        "prefix": "p-acc-snap",
+        "description": "Captures the accessibility tree of the page",
+        "body": [
+            "const ${1:snapshot} = await this.page.accessibility.snapshot();",
+            "console.log(JSON.stringify(${1:snapshot}, null, 2));"
+        ]
+    },
+    "import { test, expect }": {
+        "prefix": "p-import",
+        "description": "Standard Playwright test import",
+        "body": [
+            "import { test, expect } from '@playwright/test';"
+        ]
+    },
+    "import { test, expect, request }": {
+        "prefix": "p-import-api",
+        "description": "Playwright import with API testing support",
+        "body": [
+            "import { test, expect, request } from '@playwright/test';"
+        ]
+    },
+    "locator.setChecked()": {
+        "prefix": "p-loc-sc",
+        "description": "Sets the checked state of a checkbox or radio element",
+        "body": [
+            "await this.page.locator('${1:selector}').setChecked(${2|true,false|});"
+        ]
+    },
+    "locator.scrollIntoViewIfNeeded()": {
+        "prefix": "p-loc-siv",
+        "description": "Scrolls the element into view if it is not visible",
+        "body": [
+            "await this.page.locator('${1:selector}').scrollIntoViewIfNeeded();"
+        ]
+    },
+    "locator.textContent()": {
+        "prefix": "p-loc-tc",
+        "description": "Returns the element.textContent value",
+        "body": [
+            "const ${1:text} = await this.page.locator('${2:selector}').textContent();"
+        ]
+    },
+    "locator.waitFor() state": {
+        "prefix": "p-loc-wf",
+        "description": "Waits until the locator satisfies a given state",
+        "body": [
+            "await this.page.locator('${1:selector}').waitFor({ state: '${2|visible,hidden,attached,detached|}' });"
+        ]
+    },
+    "locator.describe()": {
+        "prefix": "p-loc-describe",
+        "description": "Attaches a readable label to a locator for better trace viewer output (v1.53+)",
+        "body": [
+            "const ${1:locator} = this.page.locator('${2:selector}').describe('${3:Human-readable name}');"
+        ]
+    },
+    "locator.filter({ visible })": {
+        "prefix": "p-loc-filter-vis",
+        "description": "Filters locator to only visible elements (v1.51+)",
+        "body": [
+            "await this.page.locator('${1:selector}').filter({ visible: true });"
+        ]
+    },
+    "locator.locator()": {
+        "prefix": "p-loc-sub",
+        "description": "Finds a matching element within the locator subtree",
+        "body": [
+            "const ${1:child} = this.page.locator('${2:parent}').locator('${3:child}');"
+        ]
+    },
+    "page.addScriptTag()": {
+        "prefix": "p-addscript",
+        "description": "Adds a <script> tag to the page by URL or inline content",
+        "body": [
+            "await this.page.addScriptTag({ url: '${1:https://example.com/script.js}' });"
+        ]
+    },
+    "page.addStyleTag()": {
+        "prefix": "p-addstyle",
+        "description": "Adds a <style> or <link rel=stylesheet> tag to the page",
+        "body": [
+            "await this.page.addStyleTag({ url: '${1:https://example.com/style.css}' });"
+        ]
+    },
+    "page.consoleMessages()": {
+        "prefix": "p-console-msgs",
+        "description": "Returns up to 200 recent console messages from the page (v1.56+)",
+        "body": [
+            "const ${1:messages} = this.page.consoleMessages();",
+            "for (const msg of ${1:messages}) {",
+            "\tconsole.log(msg.type(), msg.text());",
+            "}"
+        ]
+    },
+    "page.pageErrors()": {
+        "prefix": "p-page-errors",
+        "description": "Returns up to 200 recent uncaught exceptions from the page (v1.56+)",
+        "body": [
+            "const ${1:errors} = this.page.pageErrors();",
+            "for (const err of ${1:errors}) {",
+            "\tconsole.log(err.message);",
+            "}"
+        ]
+    },
+    "page.requests()": {
+        "prefix": "p-page-reqs",
+        "description": "Returns up to 100 recent network requests made by the page (v1.56+)",
+        "body": [
+            "const ${1:requests} = this.page.requests();",
+            "const ${2:urls} = ${1:requests}.map(r => r.url());"
+        ]
+    },
+    "page.requestGC()": {
+        "prefix": "p-reqgc",
+        "description": "Requests a garbage collection run for detecting memory leaks (v1.48+)",
+        "body": [
+            "await this.page.requestGC();"
+        ]
+    },
+    "page.removeLocatorHandler()": {
+        "prefix": "p-rlh",
+        "description": "Removes a previously registered locator handler",
+        "body": [
+            "await this.page.removeLocatorHandler(this.page.locator('${1:overlaySelector}'));"
+        ]
+    },
+    "page.removeAllListeners()": {
+        "prefix": "p-ral",
+        "description": "Removes all listeners for a given event, optionally waiting for them to finish",
+        "body": [
+            "await this.page.removeAllListeners('${1:request}');"
+        ]
+    },
+    "page.frames()": {
+        "prefix": "p-frames",
+        "description": "Returns an array of all frames attached to the page",
+        "body": [
+            "const ${1:frames} = this.page.frames();"
+        ]
+    },
+    "page.frame()": {
+        "prefix": "p-frame",
+        "description": "Returns the frame matching the given name or URL",
+        "body": [
+            "const ${1:frame} = this.page.frame({ name: '${2:frameName}' });"
+        ]
+    },
+    "page.mainFrame()": {
+        "prefix": "p-mainframe",
+        "description": "Returns the main frame of the page",
+        "body": [
+            "const ${1:frame} = this.page.mainFrame();"
+        ]
+    },
+    "page.context()": {
+        "prefix": "p-ctx",
+        "description": "Returns the browser context the page belongs to",
+        "body": [
+            "const ${1:context} = this.page.context();"
+        ]
+    },
+    "page.opener()": {
+        "prefix": "p-opener",
+        "description": "Returns the opener page if opened via window.open()",
+        "body": [
+            "const ${1:opener} = await this.page.opener();"
+        ]
+    },
+    "page.unroute()": {
+        "prefix": "p-unroute-url",
+        "description": "Removes a specific URL route registered with page.route()",
+        "body": [
+            "await this.page.unroute('${1:**/api/**}');"
+        ]
+    },
+    "page.routeWebSocket()": {
+        "prefix": "p-ws-route",
+        "description": "Intercepts WebSocket connections matching the URL pattern (v1.48+)",
+        "body": [
+            "await this.page.routeWebSocket('${1:wss://example.com/ws}', ws => {",
+            "\tws.onMessage(message => {",
+            "\t\tconsole.log(message);",
+            "\t\tws.send(JSON.stringify({ ${2:key}: '${3:value}' }));",
+            "\t});",
+            "});"
+        ]
+    },
+    "browserContext.routeWebSocket()": {
+        "prefix": "p-bc-ws-route",
+        "description": "Intercepts WebSocket connections in the entire context (v1.48+)",
+        "body": [
+            "await context.routeWebSocket('${1:wss://example.com/ws}', ws => {",
+            "\tws.connectToServer();",
+            "\tws.onMessage(message => { console.log(message); });",
+            "});"
+        ]
+    },
+    "browserContext.setExtraHTTPHeaders()": {
+        "prefix": "p-bc-sethdrs",
+        "description": "Sets extra HTTP headers sent with every request in this context",
+        "body": [
+            "await context.setExtraHTTPHeaders({",
+            "\t'${1:Authorization}': '${2:Bearer token}'",
+            "});"
+        ]
+    },
+    "browserContext.setDefaultNavigationTimeout()": {
+        "prefix": "p-bc-sdnto",
+        "description": "Sets the default navigation timeout for the browser context",
+        "body": [
+            "context.setDefaultNavigationTimeout(${1:30000});"
+        ]
+    },
+    "browserContext.newCDPSession()": {
+        "prefix": "p-bc-cdp",
+        "description": "Creates a Chrome DevTools Protocol session for the given page (Chromium only)",
+        "body": [
+            "const ${1:client} = await context.newCDPSession(${2:page});",
+            "await ${1:client}.send('${3:Network.enable}');"
+        ]
+    },
+    "browserContext.exposeBinding()": {
+        "prefix": "p-bc-expbind",
+        "description": "Adds a binding function with source info to every page in the context",
+        "body": [
+            "await context.exposeBinding('${1:bindingName}', (source, ${2:arg}) => {",
+            "\treturn $3;",
+            "});"
+        ]
+    },
+    "context.on(weberror)": {
+        "prefix": "p-bc-on-weberror",
+        "description": "Emitted when an uncaught exception is not handled by the page",
+        "body": [
+            "context.on('weberror', webError => {",
+            "\tconsole.log(webError.error().message);",
+            "});"
+        ]
+    },
+    "browser.browserType()": {
+        "prefix": "p-b-type",
+        "description": "Returns the browser type name: chromium, firefox, or webkit",
+        "body": [
+            "const ${1:type} = browser.browserType().name();"
+        ]
+    },
+    "browser.startTracing()": {
+        "prefix": "p-b-tracing-start",
+        "description": "Starts Chromium-specific tracing (Chromium only)",
+        "body": [
+            "await browser.startTracing(page, {",
+            "\tpath: '${1:trace.json}',",
+            "\tscreenshots: true",
+            "});"
+        ]
+    },
+    "browser.stopTracing()": {
+        "prefix": "p-b-tracing-stop",
+        "description": "Stops Chromium tracing and returns the buffer",
+        "body": [
+            "const ${1:buffer} = await browser.stopTracing();"
+        ]
+    },
+    "page.clock.setSystemTime()": {
+        "prefix": "p-clock-systime",
+        "description": "Updates the system time without triggering timers",
+        "body": [
+            "await this.page.clock.setSystemTime(new Date('${1:2024-01-01T12:00:00}'));"
+        ]
+    },
+    "context.tracing.group()": {
+        "prefix": "p-trace-group",
+        "description": "Opens and closes a trace group to visually group actions in the trace viewer",
+        "body": [
+            "await context.tracing.group('${1:group name}');",
+            "$0",
+            "await context.tracing.groupEnd();"
+        ]
+    },
+    "page.on('download')": {
+        "prefix": "p-on-download",
+        "description": "Emitted when a file download starts",
+        "body": [
+            "page.on('download', async download => {",
+            "\tconsole.log(download.suggestedFilename());",
+            "\tawait download.saveAs('${1:downloads/}' + download.suggestedFilename());",
+            "});"
+        ]
+    },
+    "page.on('filechooser')": {
+        "prefix": "p-on-filechooser",
+        "description": "Emitted when a file chooser dialog is opened",
+        "body": [
+            "page.on('filechooser', async fileChooser => {",
+            "\tawait fileChooser.setFiles('${1:path/to/file.txt}');",
+            "});"
+        ]
+    },
+    "page.on('websocket')": {
+        "prefix": "p-on-websocket",
+        "description": "Emitted when a WebSocket connection is opened by the page",
+        "body": [
+            "page.on('websocket', ws => {",
+            "\tconsole.log('WebSocket:', ws.url());",
+            "\tws.on('framesent', event => console.log('sent:', event.payload));",
+            "\tws.on('framereceived', event => console.log('received:', event.payload));",
+            "});"
+        ]
+    },
+    "Download file pattern": {
+        "prefix": "p-download-full",
+        "description": "Complete pattern to trigger and capture a file download",
+        "body": [
+            "const downloadPromise = this.page.waitForEvent('download');",
+            "await this.page.locator('${1:downloadButton}').click();",
+            "const ${2:download} = await downloadPromise;",
+            "await ${2:download}.saveAs('${3:downloads/}' + ${2:download}.suggestedFilename());"
+        ]
+    },
+    "download.path()": {
+        "prefix": "p-download-path",
+        "description": "Returns the file system path to the downloaded file",
+        "body": [
+            "const ${1:filePath} = await ${2:download}.path();"
+        ]
+    },
+    "download.saveAs()": {
+        "prefix": "p-download-save",
+        "description": "Saves the downloaded file to a custom path",
+        "body": [
+            "await ${1:download}.saveAs('${2:path/to/file}');"
+        ]
+    },
+    "download.suggestedFilename()": {
+        "prefix": "p-download-name",
+        "description": "Returns the suggested filename for the download",
+        "body": [
+            "const ${1:filename} = ${2:download}.suggestedFilename();"
+        ]
+    },
+    "fileChooser.setFiles() pattern": {
+        "prefix": "p-filechooser-full",
+        "description": "Complete pattern to wait for and handle a file chooser dialog",
+        "body": [
+            "const fileChooserPromise = this.page.waitForEvent('filechooser');",
+            "await this.page.locator('${1:uploadButton}').click();",
+            "const ${2:fileChooser} = await fileChooserPromise;",
+            "await ${2:fileChooser}.setFiles('${3:path/to/file.txt}');"
+        ]
+    },
+    "WebSocket mock pattern": {
+        "prefix": "p-ws-mock",
+        "description": "Mocks WebSocket server responses without a real server (v1.48+)",
+        "body": [
+            "await this.page.routeWebSocket('${1:wss://example.com/ws}', ws => {",
+            "\tws.onMessage(message => {",
+            "\t\tconst data = JSON.parse(message);",
+            "\t\tif (data.type === '${2:ping}') {",
+            "\t\t\tws.send(JSON.stringify({ type: '${3:pong}' }));",
+            "\t\t}",
+            "\t});",
+            "});"
+        ]
+    },
+    "expect.toContainClass()": {
+        "prefix": "p-e-contclass",
+        "description": "Asserts the element contains a specific CSS class (v1.52+)",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toContainClass('${2:className}');"
+        ]
+    },
+    "expect.toHaveAccessibleErrorMessage()": {
+        "prefix": "p-e-accerrm",
+        "description": "Asserts the element has a specific accessible error message (v1.50+)",
+        "body": [
+            "await expect(this.page.locator(${1:selector})).toHaveAccessibleErrorMessage('${2:error message}');"
+        ]
+    },
+    "test.step.skip()": {
+        "prefix": "p-ts-skip",
+        "description": "Declares a test step that is skipped (v1.50+)",
+        "body": [
+            "await test.step.skip('${1:step title}', async () => {",
+            "\t$2",
+            "});"
+        ]
+    },
+    "test.fail.only()": {
+        "prefix": "p-tfail-only",
+        "description": "Focuses only tests expected to fail — skips all others (v1.49+)",
+        "body": [
+            "test.fail.only('${1:title}', async ({ ${2:page} }) => {",
+            "\t$3",
+            "});"
+        ]
+    },
+    "test.describe.only()": {
+        "prefix": "p-tdo",
+        "description": "Focuses only this describe group — all other groups are skipped",
+        "body": [
+            "test.describe.only('${1:suite}', () => {",
+            "\t$2",
+            "});"
+        ]
+    },
+    "test.describe.parallel()": {
+        "prefix": "p-tdp",
+        "description": "Declares a describe group where tests run concurrently",
+        "body": [
+            "test.describe.parallel('${1:suite}', () => {",
+            "\t$2",
+            "});"
+        ]
+    },
+    "test.describe.serial()": {
+        "prefix": "p-tds",
+        "description": "Declares a describe group where tests run one at a time",
+        "body": [
+            "test.describe.serial('${1:suite}', () => {",
+            "\t$2",
+            "});"
+        ]
+    },
+    "test.setTimeout()": {
+        "prefix": "p-t-timeout",
+        "description": "Sets a custom timeout for the current test",
+        "body": [
+            "test.setTimeout(${1:60000});"
+        ]
+    },
+    "test.step() with timeout": {
+        "prefix": "p-ts-timeout",
+        "description": "Declares a test step with a custom timeout (v1.50+)",
+        "body": [
+            "await test.step('${1:step title}', async () => {",
+            "\t$2",
+            "}, { timeout: ${3:5000} });"
+        ]
+    },
+    "apiRequest.head()": {
+        "prefix": "p-api-head",
+        "description": "Sends an HTTP HEAD request",
+        "body": [
+            "const ${1:response} = await request.head('${2:/endpoint}');",
+            "console.log(${1:response}.status());"
+        ]
+    },
+    "apiRequest.storageState()": {
+        "prefix": "p-api-storage",
+        "description": "Returns the storage state (cookies/localStorage) for the API context",
+        "body": [
+            "const ${1:state} = await request.storageState({ path: '${2:storageState.json}' });"
+        ]
+    },
+    "apiRequest.dispose()": {
+        "prefix": "p-api-dispose",
+        "description": "Disposes the APIRequestContext and all network responses",
+        "body": [
+            "await request.dispose();"
+        ]
+    },
+    "Inspect request details": {
+        "prefix": "p-net-req",
+        "description": "Inspects a network request inside a page.on(request) handler",
+        "body": [
+            "this.page.on('request', request => {",
+            "\tconsole.log(request.method(), request.url());",
+            "\tconst ${1:headers} = request.headers();",
+            "\tconst ${2:body} = request.postDataJSON();",
+            "});"
+        ]
+    },
+    "Inspect response details": {
+        "prefix": "p-net-res",
+        "description": "Inspects a network response inside a page.on(response) handler",
+        "body": [
+            "this.page.on('response', async response => {",
+            "\tconsole.log(response.status(), response.url());",
+            "\tif (response.url().includes('${1:/api/}')) {",
+            "\t\tconst ${2:body} = await response.json();",
+            "\t\tconsole.log(${2:body});",
+            "\t}",
+            "});"
+        ]
+    },
+    "Wait and assert API response": {
+        "prefix": "p-net-assert",
+        "description": "Waits for a specific API response and asserts its content",
+        "body": [
+            "const ${1:responsePromise} = this.page.waitForResponse(resp =>",
+            "\tresp.url().includes('${2:/api/endpoint}') && resp.status() === ${3:200}",
+            ");",
+            "await this.page.locator('${4:triggerSelector}').click();",
+            "const ${5:response} = await ${1:responsePromise};",
+            "const ${6:body} = await ${5:response}.json();",
+            "expect(${6:body}).${7:toMatchObject}($8);"
+        ]
+    },
+    "worker.evaluate()": {
+        "prefix": "p-worker-eval",
+        "description": "Executes JavaScript in the web worker context",
+        "body": [
+            "this.page.on('worker', async worker => {",
+            "\tconst ${1:result} = await worker.evaluate(() => $2);",
+            "\tconsole.log(${1:result});",
+            "});"
+        ]
+    },
+    "worker.url()": {
+        "prefix": "p-worker-url",
+        "description": "Gets the URL of the web worker script",
+        "body": [
+            "this.page.on('worker', worker => {",
+            "\tconsole.log('Worker URL:', worker.url());",
+            "});"
+        ]
+    },
+    "Global setup with storageState": {
+        "prefix": "p-auth-setup",
+        "description": "Global setup file to log in once and save auth state for all tests",
+        "body": [
+            "import { chromium, FullConfig } from '@playwright/test';",
+            "",
+            "async function globalSetup(config: FullConfig) {",
+            "\tconst browser = await chromium.launch();",
+            "\tconst page = await browser.newPage();",
+            "\tawait page.goto('${1:https://example.com/login}');",
+            "\tawait page.fill('${2:[name=email]}', process.env.EMAIL!);",
+            "\tawait page.fill('${3:[name=password]}', process.env.PASSWORD!);",
+            "\tawait page.click('${4:[type=submit]}');",
+            "\tawait page.context().storageState({ path: '${5:storageState.json}' });",
+            "\tawait browser.close();",
+            "}",
+            "",
+            "export default globalSetup;"
+        ]
+    },
+    "Intercept and modify API response": {
+        "prefix": "p-route-modify",
+        "description": "Intercepts an API call, modifies the JSON body, and returns the altered response",
+        "body": [
+            "await this.page.route('${1:**/api/endpoint}', async route => {",
+            "\tconst response = await route.fetch();",
+            "\tconst body = await response.json();",
+            "\tbody.${2:field} = '${3:mockedValue}';",
+            "\tawait route.fulfill({ response, body: JSON.stringify(body) });",
+            "});"
+        ]
+    },
+    "TLS client certificate": {
+        "prefix": "p-tls-cert",
+        "description": "Creates a browser context with a TLS client certificate (v1.46+)",
+        "body": [
+            "const context = await browser.newContext({",
+            "\tclientCertificates: [{",
+            "\t\torigin: '${1:https://example.com}',",
+            "\t\tcertPath: '${2:client.crt}',",
+            "\t\tkeyPath: '${3:client.key}'",
+            "\t}]",
+            "});"
+        ]
+    },
+    "Soft assertions block": {
+        "prefix": "p-soft-assert",
+        "description": "Groups multiple soft assertions — all run before reporting failures",
+        "body": [
+            "const ${1:softExpect} = expect.configure({ soft: true });",
+            "await ${1:softExpect}(this.page.locator('${2:selector1}')).toBeVisible();",
+            "await ${1:softExpect}(this.page.locator('${3:selector2}')).toHaveText('${4:text}');",
+            "expect(test.info().errors).toHaveLength(0);"
+        ]
+    },
+    "Playwright config template": {
+        "prefix": "p-config",
+        "description": "Full playwright.config.ts template with projects, tracing, and reporter",
+        "body": [
+            "import { defineConfig, devices } from '@playwright/test';",
+            "",
+            "export default defineConfig({",
+            "\ttestDir: './tests',",
+            "\tfullParallelism: true,",
+            "\tforbidOnly: !!process.env.CI,",
+            "\tretries: process.env.CI ? 2 : 0,",
+            "\tworkers: process.env.CI ? 1 : undefined,",
+            "\treporter: 'html',",
+            "\tuse: {",
+            "\t\tbaseURL: '${1:http://localhost:3000}',",
+            "\t\ttrace: 'on-first-retry',",
+            "\t\tscreenshot: 'only-on-failure',",
+            "\t\tvideo: 'retain-on-failure'",
+            "\t},",
+            "\tprojects: [",
+            "\t\t{ name: 'chromium', use: { ...devices['Desktop Chrome'] } },",
+            "\t\t{ name: 'firefox', use: { ...devices['Desktop Firefox'] } },",
+            "\t\t{ name: 'webkit', use: { ...devices['Desktop Safari'] } }",
+            "\t]",
+            "});"
+        ]
+    },
+    "Mobile device emulation": {
+        "prefix": "p-mobile",
+        "description": "Creates a browser context emulating a specific mobile device",
+        "body": [
+            "import { devices } from '@playwright/test';",
+            "",
+            "const context = await browser.newContext({",
+            "\t...devices['${1|iPhone 15,Pixel 7,Galaxy S9+|}'],",
+            "\tlocale: '${2:en-US}'",
+            "});"
         ]
     }
 }

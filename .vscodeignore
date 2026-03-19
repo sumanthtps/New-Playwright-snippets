@@ -2,7 +2,9 @@
 .git/**
 .gitignore
 .claude/**
+.vscode/**
 test/**
+scripts/**
 node_modules/**
 *.vsix
 images/preview.gif
