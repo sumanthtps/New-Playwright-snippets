@@ -5,6 +5,11 @@
 .vscode/**
 test/**
 scripts/**
+src/**
+out/**
 node_modules/**
+dist/**/*.map
+tsconfig.json
+esbuild.js
 *.vsix
 images/preview.gif

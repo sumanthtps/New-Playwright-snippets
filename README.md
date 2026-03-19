@@ -1,4 +1,4 @@
-<h1 align="center">Playwright Snippets 2026 🎭</h1>
+<h1 align="center">Playwright Studio 🎭</h1>
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=sumanthtps.playwright-test-code-snippets"><img src="https://img.shields.io/visual-studio-marketplace/v/sumanthtps.playwright-test-code-snippets?label=version&color=blue" alt="Version"></a>
@@ -7,26 +7,71 @@
   <a href="https://github.com/sumanthtps/New-Playwright-snippets/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgray.svg" alt="License"></a>
 </p>
 
-A Visual Studio Code extension providing **338 Playwright snippets** for modern test automation. Covers the full Playwright 1.58 API — from basic page actions to Clock, Tracing, Video, WebSocket routing, API testing, and more.
+<p align="center">
+  <strong>338 Playwright snippets</strong> + <strong>integrated test runner</strong> with CodeLens Run / Debug / Inspect buttons, Codegen, Trace Viewer, and HTML Report — all inside VS Code.
+</p>
 
 > Supports **TypeScript**, **JavaScript**, **TSX**, and **JSX**.
+
+---
+
+## Features
+
+### 1. CodeLens Test Runner
+
+Inline buttons appear above every `test()` and `describe()` block in your spec files — no configuration needed.
+
+```
+▶ Run All   ⬡ Debug All   ⬡ Inspect        ← top of file
+▶ Run   ⬡ Debug   ⬡ Inspect               ← each test()
+▶ Run Suite   ⬡ Debug Suite               ← each describe()
+```
+
+| Button | What it does |
+|---|---|
+| **▶ Run** | Runs the test in the integrated terminal |
+| **⬡ Debug** | Launches VS Code debugger with Playwright debug mode |
+| **⬡ Inspect** | Opens Playwright Inspector (`PWDEBUG=1`) |
+
+### 2. Commands
+
+All commands are available via `Ctrl+Shift+P`:
+
+| Command | Description |
+|---|---|
+| `Playwright: Run Test` | Run a specific test |
+| `Playwright: Run All Tests in File` | Run every test in the active file |
+| `Playwright: Debug Test` | Debug a specific test |
+| `Playwright: Debug All Tests in File` | Debug all tests in the active file |
+| `Playwright: Inspect Test` | Open Playwright Inspector for a test |
+| `Playwright: Run Test at Cursor` | Run the test nearest to the cursor |
+| `Playwright: Open Codegen` | Launch `playwright codegen` with an optional URL |
+| `Playwright: Show Trace Viewer` | Pick a `.zip` trace file and open the viewer |
+| `Playwright: Show HTML Report` | Run `playwright show-report` |
+
+Right-click in the **editor** for `Run Test at Cursor` and `Open Codegen`.
+Right-click a file in the **Explorer** for `Run All Tests in File` and `Debug All Tests in File`.
+
+### 3. Snippets
+
+338 snippets covering the full Playwright 1.58 API. Type any prefix (e.g. `p-`) in a `.ts`, `.js`, `.tsx`, or `.jsx` file and press `Tab`.
 
 ---
 
 ## Requirements
 
 - Visual Studio Code 1.80.0 or higher
-- Node.js 18 or higher (for local development)
+- Playwright installed in your project (`npm i -D @playwright/test`)
 
 ---
 
 ## Installation
 
-1. Open VS Code → **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-2. Search for **"Playwright Snippets 2026"**
+1. Open VS Code → **Extensions** (`Ctrl+Shift+X`)
+2. Search for **"Playwright Studio"**
 3. Click **Install**
 
-Or install via command line:
+Or via command line:
 
 ```bash
 code --install-extension sumanthtps.playwright-test-code-snippets
@@ -34,11 +79,35 @@ code --install-extension sumanthtps.playwright-test-code-snippets
 
 ---
 
-## Usage
+## Configuration
 
-Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see snippet suggestions. Press `Tab` to insert and jump through placeholders.
+All settings are under `playwrightSnippets.*` in VS Code settings:
 
-**Prefix families:**
+| Setting | Default | Description |
+|---|---|---|
+| `playwrightSnippets.workingDirectory` | `""` | Working directory for tests (relative to workspace root). Defaults to workspace root. |
+| `playwrightSnippets.testCommand` | `"npx playwright test"` | Base command used to run tests. |
+| `playwrightSnippets.reporter` | `""` | Reporter to use (e.g. `list`, `dot`, `html`). Leave empty to use `playwright.config.ts` default. |
+| `playwrightSnippets.env` | `{}` | Extra environment variables passed to every test run. |
+
+**Example `.vscode/settings.json`:**
+
+```json
+{
+  "playwrightSnippets.workingDirectory": "e2e",
+  "playwrightSnippets.testCommand": "npx playwright test",
+  "playwrightSnippets.reporter": "list",
+  "playwrightSnippets.env": {
+    "BASE_URL": "https://staging.example.com"
+  }
+}
+```
+
+---
+
+## Snippets Reference
+
+### Prefix Families
 
 | Prefix | Category |
 |---|---|
@@ -61,8 +130,6 @@ Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see sni
 | `p-download-*` | Downloads |
 
 ---
-
-## Snippets Reference
 
 ### Imports
 
@@ -375,6 +442,7 @@ Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see sni
 ### Assertions
 
 #### State Assertions
+
 | Prefix | Description |
 |---|---|
 | `p-etbv` | `toBeVisible()` |
@@ -390,6 +458,7 @@ Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see sni
 | `p-e-ok` | `toBeOK()` — response status |
 
 #### Content Assertions
+
 | Prefix | Description |
 |---|---|
 | `p-etb` | `expect().toBe()` |
@@ -410,6 +479,7 @@ Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see sni
 | `p-e-role` | `toHaveRole()` |
 
 #### Accessibility Assertions
+
 | Prefix | Description |
 |---|---|
 | `p-e-accname` | `toHaveAccessibleName()` |
@@ -418,6 +488,7 @@ Type a prefix (e.g. `p-`) in any `.ts`, `.js`, `.tsx`, or `.jsx` file to see sni
 | `p-e-aria` | `toMatchAriaSnapshot()` (v1.49+) |
 
 #### Advanced Assertions
+
 | Prefix | Description |
 |---|---|
 | `p-config-expect` | `expect.configure()` — soft/timeout |
