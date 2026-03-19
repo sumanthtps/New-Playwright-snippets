@@ -1,33 +1,45 @@
 {
   "name": "playwright-test-code-snippets",
-  "displayName": "Playwright Snippets 2024",
+  "displayName": "Playwright Studio",
   "license": "MIT",
-  "author": "Sumanth TP",
+  "author": "Sumanth T P",
   "publisher": "sumanthtps",
-  "description": "A plethora of new advanced playwright snippets in the vs market place",
-  "homepage": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode",
+  "description": "Playwright Studio — snippets, CodeLens test runner, codegen, trace viewer, and more",
+  "homepage": "https://github.com/sumanthtps/New-Playwright-snippets",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode.git"
+    "url": "https://github.com/sumanthtps/New-Playwright-snippets.git"
   },
-  "bugs": "https://github.com/SUMANTHTPs/Playwright-snippets-vscode/issues",
+  "bugs": "https://github.com/sumanthtps/New-Playwright-snippets/issues",
   "icon": "images/playwright-logo.png",
   "galleryBanner": {
     "color": "#2b3137",
     "theme": "dark"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
-    "Snippets"
+    "Snippets",
+    "Testing"
   ],
   "keywords": [
     "snippets",
     "playwright",
     "playwright-test",
-    "playwright-core"
+    "playwright-core",
+    "testing",
+    "automation",
+    "codelens",
+    "test-runner"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
   ],
   "contributes": {
     "snippets": [
@@ -47,11 +59,133 @@
         "language": "typescriptreact",
         "path": "./snippets/playwright.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "playwrightSnippets.runTest",
+        "title": "Playwright Studio:Run Test"
+      },
+      {
+        "command": "playwrightSnippets.runFile",
+        "title": "Playwright Studio:Run All Tests in File"
+      },
+      {
+        "command": "playwrightSnippets.debugTest",
+        "title": "Playwright Studio:Debug Test"
+      },
+      {
+        "command": "playwrightSnippets.debugFile",
+        "title": "Playwright Studio:Debug All Tests in File"
+      },
+      {
+        "command": "playwrightSnippets.inspectTest",
+        "title": "Playwright Studio:Inspect Test (PWDEBUG=1)"
+      },
+      {
+        "command": "playwrightSnippets.inspectFile",
+        "title": "Playwright Studio:Inspect All Tests in File"
+      },
+      {
+        "command": "playwrightSnippets.debugInspectTest",
+        "title": "Playwright Studio:Debug Test with Inspector"
+      },
+      {
+        "command": "playwrightSnippets.debugInspectFile",
+        "title": "Playwright Studio:Debug All Tests with Inspector"
+      },
+      {
+        "command": "playwrightSnippets.runTestAtCursor",
+        "title": "Playwright Studio:Run Test at Cursor"
+      },
+      {
+        "command": "playwrightSnippets.codeGen",
+        "title": "Playwright Studio:Open Codegen"
+      },
+      {
+        "command": "playwrightSnippets.showTrace",
+        "title": "Playwright Studio:Show Trace Viewer"
+      },
+      {
+        "command": "playwrightSnippets.showReport",
+        "title": "Playwright Studio:Show HTML Report"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "playwrightSnippets.runTestAtCursor",
+          "when": "editorTextFocus && resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "playwright@1"
+        },
+        {
+          "command": "playwrightSnippets.codeGen",
+          "when": "editorTextFocus",
+          "group": "playwright@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "playwrightSnippets.runFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "playwright@1"
+        },
+        {
+          "command": "playwrightSnippets.debugFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "playwright@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "playwrightSnippets.runTestAtCursor",
+        "key": "ctrl+shift+p ctrl+shift+r",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Playwright Snippets",
+      "properties": {
+        "playwrightSnippets.workingDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Working directory for running Playwright tests (relative to workspace root, or absolute). Defaults to workspace root."
+        },
+        "playwrightSnippets.testCommand": {
+          "type": "string",
+          "default": "npx playwright test",
+          "description": "Base command used to run Playwright tests."
+        },
+        "playwrightSnippets.reporter": {
+          "type": "string",
+          "default": "",
+          "description": "Playwright reporter to use (e.g. list, dot, html). Leave empty to use playwright.config.ts default."
+        },
+        "playwrightSnippets.env": {
+          "type": "object",
+          "default": {},
+          "description": "Additional environment variables to set when running tests.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "compile:prod": "node esbuild.js --production",
+    "test": "node --test test/snippets.test.js",
+    "package": "npm run compile:prod && vsce package",
+    "build": "npm run package"
   },
   "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.80.0",
     "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.25.0",
     "semantic-release": "^25.0.3",
-    "semantic-release-vsce": "^6.1.0"
+    "semantic-release-vsce": "^6.1.0",
+    "typescript": "^5.7.0"
   }
 }
