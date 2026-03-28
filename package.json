@@ -4,7 +4,7 @@
   "license": "MIT",
   "author": "Sumanth T P",
   "publisher": "sumanthtps",
-  "description": "Playwright Studio — snippets, CodeLens test runner, codegen, trace viewer, and more",
+  "description": "338 Playwright snippets plus Run, Debug, Inspect, Codegen, Trace Viewer, and HTML Report inside VS Code",
   "homepage": "https://github.com/sumanthtps/New-Playwright-snippets",
   "repository": {
     "type": "git",
@@ -13,10 +13,10 @@
   "bugs": "https://github.com/sumanthtps/New-Playwright-snippets/issues",
   "icon": "images/playwright-logo.png",
   "galleryBanner": {
-    "color": "#2b3137",
+    "color": "#0f6b44",
     "theme": "dark"
   },
-  "version": "0.0.6",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -25,15 +25,25 @@
     "Testing"
   ],
   "keywords": [
-    "snippets",
     "playwright",
     "playwright-test",
-    "playwright-core",
+    "playwright snippets",
+    "playwright studio",
+    "e2e",
+    "end-to-end",
     "testing",
     "automation",
+    "test automation",
     "codelens",
-    "test-runner"
+    "test runner",
+    "trace viewer",
+    "codegen",
+    "html report",
+    "typescript",
+    "javascript"
   ],
+  "markdown": "github",
+  "qna": "marketplace",
   "main": "./dist/extension.js",
   "activationEvents": [
     "onLanguage:javascript",
@@ -63,51 +73,51 @@
     "commands": [
       {
         "command": "playwrightSnippets.runTest",
-        "title": "Playwright Studio:Run Test"
+        "title": "Playwright Studio: Run Test"
       },
       {
         "command": "playwrightSnippets.runFile",
-        "title": "Playwright Studio:Run All Tests in File"
+        "title": "Playwright Studio: Run All Tests in File"
       },
       {
         "command": "playwrightSnippets.debugTest",
-        "title": "Playwright Studio:Debug Test"
+        "title": "Playwright Studio: Debug Test"
       },
       {
         "command": "playwrightSnippets.debugFile",
-        "title": "Playwright Studio:Debug All Tests in File"
+        "title": "Playwright Studio: Debug All Tests in File"
       },
       {
         "command": "playwrightSnippets.inspectTest",
-        "title": "Playwright Studio:Inspect Test (PWDEBUG=1)"
+        "title": "Playwright Studio: Inspect Test (PWDEBUG=1)"
       },
       {
         "command": "playwrightSnippets.inspectFile",
-        "title": "Playwright Studio:Inspect All Tests in File"
+        "title": "Playwright Studio: Inspect All Tests in File"
       },
       {
         "command": "playwrightSnippets.debugInspectTest",
-        "title": "Playwright Studio:Debug Test with Inspector"
+        "title": "Playwright Studio: Debug Test with Inspector"
       },
       {
         "command": "playwrightSnippets.debugInspectFile",
-        "title": "Playwright Studio:Debug All Tests with Inspector"
+        "title": "Playwright Studio: Debug All Tests with Inspector"
       },
       {
         "command": "playwrightSnippets.runTestAtCursor",
-        "title": "Playwright Studio:Run Test at Cursor"
+        "title": "Playwright Studio: Run Test at Cursor"
       },
       {
         "command": "playwrightSnippets.codeGen",
-        "title": "Playwright Studio:Open Codegen"
+        "title": "Playwright Studio: Open Codegen"
       },
       {
         "command": "playwrightSnippets.showTrace",
-        "title": "Playwright Studio:Show Trace Viewer"
+        "title": "Playwright Studio: Show Trace Viewer"
       },
       {
         "command": "playwrightSnippets.showReport",
-        "title": "Playwright Studio:Show HTML Report"
+        "title": "Playwright Studio: Show HTML Report"
       }
     ],
     "menus": {
@@ -123,6 +133,23 @@
           "group": "playwright@2"
         }
       ],
+      "editor/title": [
+        {
+          "command": "playwrightSnippets.runFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "navigation@1"
+        },
+        {
+          "command": "playwrightSnippets.debugFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "navigation@2"
+        },
+        {
+          "command": "playwrightSnippets.debugInspectFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "navigation@3"
+        }
+      ],
       "explorer/context": [
         {
           "command": "playwrightSnippets.runFile",
@@ -133,6 +160,11 @@
           "command": "playwrightSnippets.debugFile",
           "when": "resourceExtname =~ /\\.[jt]sx?$/",
           "group": "playwright@2"
+        },
+        {
+          "command": "playwrightSnippets.debugInspectFile",
+          "when": "resourceExtname =~ /\\.[jt]sx?$/",
+          "group": "playwright@3"
         }
       ]
     },
@@ -170,7 +202,55 @@
           }
         }
       }
-    }
+    },
+    "walkthroughs": [
+      {
+        "id": "playwrightStudio.getStarted",
+        "title": "Get started with Playwright Studio",
+        "description": "Run Playwright tests, generate code, and inspect failures without leaving VS Code.",
+        "steps": [
+          {
+            "id": "playwrightStudio.runTest",
+            "title": "Run a test from the editor",
+            "description": "Open a Playwright test file and use CodeLens, the editor tab menu, or the Command Palette to run a test quickly.",
+            "media": {
+              "image": "images/walkthrough-run.svg",
+              "altText": "Playwright Studio run test walkthrough"
+            },
+            "completionEvents": [
+              "onCommand:playwrightSnippets.runTest",
+              "onCommand:playwrightSnippets.runFile",
+              "onCommand:playwrightSnippets.runTestAtCursor"
+            ]
+          },
+          {
+            "id": "playwrightStudio.codegen",
+            "title": "Generate Playwright code",
+            "description": "Launch Codegen directly from VS Code to record actions and bootstrap new tests faster.",
+            "media": {
+              "image": "images/walkthrough-codegen.svg",
+              "altText": "Playwright Studio codegen walkthrough"
+            },
+            "completionEvents": [
+              "onCommand:playwrightSnippets.codeGen"
+            ]
+          },
+          {
+            "id": "playwrightStudio.trace",
+            "title": "Open traces and reports",
+            "description": "Inspect failures with Trace Viewer or open the Playwright HTML report without leaving the editor.",
+            "media": {
+              "image": "images/walkthrough-trace.svg",
+              "altText": "Playwright Studio trace viewer walkthrough"
+            },
+            "completionEvents": [
+              "onCommand:playwrightSnippets.showTrace",
+              "onCommand:playwrightSnippets.showReport"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "scripts": {
     "compile": "node esbuild.js",

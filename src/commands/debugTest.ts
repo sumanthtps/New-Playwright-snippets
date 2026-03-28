@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as vscode from 'vscode';
 import { buildRunArgs } from '../config';
 
@@ -34,10 +33,9 @@ async function openDebugTerminal(command: string): Promise<void> {
 }
 
 export async function debugTest(testFile: string, testName?: string): Promise<void> {
-  const dir = path.dirname(testFile);
   const args = buildRunArgs(testFile, testName);
   args.push('--headed');
-  await openDebugTerminal(`cd "${dir}" && ${args.join(' ')}`);
+  await openDebugTerminal(args.join(' '));
 }
 
 export async function debugFile(testFile: string): Promise<void> {

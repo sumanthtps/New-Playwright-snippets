@@ -1,0 +1,44 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="28" fill="#09130F"/>
+  <rect x="24" y="24" width="912" height="492" rx="24" fill="#0E1D18" stroke="#214535" stroke-width="2"/>
+
+  <image href="playwright-logo.png" x="56" y="48" width="42" height="42"/>
+  <text x="112" y="68" fill="#9CE8BC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">PLAYWRIGHT STUDIO</text>
+  <text x="112" y="104" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="800">Run tests where you write them</text>
+  <text x="112" y="134" fill="#B8DCC7" font-family="Segoe UI, Arial, sans-serif" font-size="18">Inline actions for Playwright tests and suites inside VS Code.</text>
+
+  <rect x="56" y="170" width="560" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <rect x="56" y="170" width="560" height="34" rx="18" fill="#172320"/>
+  <rect x="56" y="196" width="48" height="268" fill="#141F1B"/>
+  <rect x="104" y="204" width="512" height="34" fill="#1C2925"/>
+  <rect x="122" y="210" width="152" height="22" rx="6" fill="#101816"/>
+  <text x="136" y="225" fill="#E6FFF0" font-family="Segoe UI, Arial, sans-serif" font-size="12">playwright.spec.ts</text>
+  <text x="124" y="258" fill="#8BA697" font-family="Segoe UI, Arial, sans-serif" font-size="11">tests &gt; playwright.spec.ts</text>
+
+  <rect x="124" y="280" width="244" height="26" rx="6" fill="#13211C"/>
+  <text x="138" y="298" fill="#45B5FF" font-family="Consolas, 'Courier New', monospace" font-size="13" font-weight="700">Run</text>
+  <text x="188" y="298" fill="#45B5FF" font-family="Consolas, 'Courier New', monospace" font-size="13" font-weight="700">Debug</text>
+  <text x="258" y="298" fill="#45B5FF" font-family="Consolas, 'Courier New', monospace" font-size="13" font-weight="700">Inspect</text>
+
+  <text x="124" y="334" fill="#D7E6DD" font-family="Consolas, 'Courier New', monospace" font-size="15">test('checkout flow', async ({ page }) =&gt; {</text>
+  <text x="124" y="370" fill="#D7E6DD" font-family="Consolas, 'Courier New', monospace" font-size="15">  await page.goto('/checkout');</text>
+  <text x="124" y="406" fill="#D7E6DD" font-family="Consolas, 'Courier New', monospace" font-size="15">  await expect(page).toHaveURL(/success/);</text>
+  <text x="124" y="442" fill="#D7E6DD" font-family="Consolas, 'Courier New', monospace" font-size="15">});</text>
+
+  <rect x="648" y="170" width="256" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <text x="676" y="212" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Highlights</text>
+
+  <rect x="676" y="240" width="196" height="38" rx="10" fill="#173027"/>
+  <text x="694" y="265" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Run All / Debug All</text>
+
+  <rect x="676" y="292" width="196" height="38" rx="10" fill="#173027"/>
+  <text x="694" y="317" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Run / Debug / Inspect</text>
+
+  <rect x="676" y="344" width="196" height="38" rx="10" fill="#173027"/>
+  <text x="694" y="369" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Suite actions</text>
+
+  <text x="676" y="424" fill="#B8DCC7" font-family="Segoe UI, Arial, sans-serif" font-size="18">
+    <tspan x="676" dy="0">Open a spec file and run</tspan>
+    <tspan x="676" dy="24">tests immediately.</tspan>
+  </text>
+</svg>
