@@ -1,13 +1,66 @@
 import * as vscode from 'vscode';
-import { runTest, runFile } from './runTest';
-import { debugTest, debugFile } from './debugTest';
-import { inspectTest, inspectFile } from './inspectTest';
-import { debugInspectTest, debugInspectFile } from './debugInspectTest';
-import { codeGen } from './codeGen';
-import { showTrace } from './showTrace';
-import { showReport } from './showReport';
 import { PlaywrightCodeLensProvider } from '../codeLensProvider';
 import { parseTests } from '../testParser';
+import { codeGen } from './codeGen';
+import { debugInspectFile, debugInspectTest } from './debugInspectTest';
+import { debugFile, debugTest } from './debugTest';
+import { inspectFile, inspectTest } from './inspectTest';
+import { runFile, runTest } from './runTest';
+import { showReport } from './showReport';
+import { showTrace } from './showTrace';
+
+async function getActiveFile(): Promise<string | undefined> {
+  const editor = vscode.window.activeTextEditor;
+  if (editor?.document.uri.scheme === 'file') {
+    return editor.document.uri.fsPath;
+  }
+
+  await vscode.window.showErrorMessage('Open a Playwright test file first.');
+  return undefined;
+}
+
+async function resolveFileTarget(file: unknown): Promise<string | undefined> {
+  if (typeof file === 'string' && file) {
+    return file;
+  }
+
+  return getActiveFile();
+}
+
+async function resolveTestTarget(
+  file: unknown,
+  name: unknown
+): Promise<{ file: string; name?: string } | undefined> {
+  const resolvedFile = await resolveFileTarget(file);
+  if (!resolvedFile) {
+    return undefined;
+  }
+
+  if (typeof name === 'string' && name) {
+    return { file: resolvedFile, name };
+  }
+
+  const document = await vscode.workspace.openTextDocument(resolvedFile);
+  const tests = parseTests(document).filter((item) => item.kind === 'test');
+  if (tests.length === 0) {
+    await vscode.window.showErrorMessage('No Playwright tests were found in the current file.');
+    return undefined;
+  }
+
+  const picked = await vscode.window.showQuickPick(
+    tests.map((test) => ({
+      label: test.name,
+      description: `Line ${test.line + 1}`,
+    })),
+    { placeHolder: 'Select a Playwright test' }
+  );
+
+  if (!picked) {
+    return undefined;
+  }
+
+  return { file: resolvedFile, name: picked.label };
+}
 
 export function registerCommands(
   context: vscode.ExtensionContext,
@@ -16,44 +69,83 @@ export function registerCommands(
   const register = (id: string, fn: (...args: unknown[]) => unknown) =>
     context.subscriptions.push(vscode.commands.registerCommand(id, fn));
 
-  register('playwrightSnippets.runTest', (file: unknown, name: unknown) =>
-    runTest(file as string, name as string | undefined)
-  );
-  register('playwrightSnippets.runFile', (file: unknown) => runFile(file as string));
+  register('playwrightSnippets.runTest', async (file: unknown, name: unknown) => {
+    const target = await resolveTestTarget(file, name);
+    if (target) {
+      runTest(target.file, target.name);
+    }
+  });
 
-  register('playwrightSnippets.debugTest', (file: unknown, name: unknown) =>
-    debugTest(file as string, name as string | undefined)
-  );
-  register('playwrightSnippets.debugFile', (file: unknown) => debugFile(file as string));
+  register('playwrightSnippets.runFile', async (file: unknown) => {
+    const target = await resolveFileTarget(file);
+    if (target) {
+      runFile(target);
+    }
+  });
 
-  register('playwrightSnippets.inspectTest', (file: unknown, name: unknown) =>
-    inspectTest(file as string, name as string | undefined)
-  );
-  register('playwrightSnippets.inspectFile', (file: unknown) => inspectFile(file as string));
+  register('playwrightSnippets.debugTest', async (file: unknown, name: unknown) => {
+    const target = await resolveTestTarget(file, name);
+    if (target) {
+      await debugTest(target.file, target.name);
+    }
+  });
 
-  register('playwrightSnippets.debugInspectTest', (file: unknown, name: unknown) =>
-    debugInspectTest(file as string, name as string | undefined)
-  );
-  register('playwrightSnippets.debugInspectFile', (file: unknown) => debugInspectFile(file as string));
+  register('playwrightSnippets.debugFile', async (file: unknown) => {
+    const target = await resolveFileTarget(file);
+    if (target) {
+      await debugFile(target);
+    }
+  });
+
+  register('playwrightSnippets.inspectTest', async (file: unknown, name: unknown) => {
+    const target = await resolveTestTarget(file, name);
+    if (target) {
+      inspectTest(target.file, target.name);
+    }
+  });
+
+  register('playwrightSnippets.inspectFile', async (file: unknown) => {
+    const target = await resolveFileTarget(file);
+    if (target) {
+      inspectFile(target);
+    }
+  });
+
+  register('playwrightSnippets.debugInspectTest', async (file: unknown, name: unknown) => {
+    const target = await resolveTestTarget(file, name);
+    if (target) {
+      debugInspectTest(target.file, target.name);
+    }
+  });
+
+  register('playwrightSnippets.debugInspectFile', async (file: unknown) => {
+    const target = await resolveFileTarget(file);
+    if (target) {
+      debugInspectFile(target);
+    }
+  });
 
   register('playwrightSnippets.codeGen', () => codeGen());
   register('playwrightSnippets.showTrace', () => showTrace());
   register('playwrightSnippets.showReport', () => showReport());
 
-  // Run test at cursor
   register('playwrightSnippets.runTestAtCursor', () => {
     const editor = vscode.window.activeTextEditor;
-    if (!editor) return;
+    if (!editor) {
+      return;
+    }
+
     const file = editor.document.uri.fsPath;
     const line = editor.selection.active.line;
     const items = parseTests(editor.document);
-    // Find the nearest test above cursor
-    const test = [...items].reverse().find((t) => t.line <= line && t.kind === 'test');
+    const test = [...items].reverse().find((item) => item.line <= line && item.kind === 'test');
+
     if (test) {
       runTest(file, test.name);
-    } else {
-      runFile(file);
+      return;
     }
+
+    runFile(file);
   });
 
   register('playwrightSnippets.refreshCodeLens', () => codeLens.refresh());

@@ -30,7 +30,7 @@ export function getConfig(): PlaywrightConfig {
 export function buildRunArgs(testFile: string, testName?: string): string[] {
   const { testCommand, reporter } = getConfig();
   const args = testCommand.split(/\s+/);
-  args.push(path.basename(testFile));
+  args.push(JSON.stringify(testFile));
   if (testName) {
     args.push('--grep', JSON.stringify(testName));
   }

@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
-import { parseTests, isTestFile } from './testParser';
+import { isTestFile, parseTests } from './testParser';
 
 export class PlaywrightCodeLensProvider implements vscode.CodeLensProvider {
-  private _onDidChangeCodeLenses = new vscode.EventEmitter<void>();
-  readonly onDidChangeCodeLenses = this._onDidChangeCodeLenses.event;
+  private readonly onDidChangeCodeLensesEmitter = new vscode.EventEmitter<void>();
+  readonly onDidChangeCodeLenses = this.onDidChangeCodeLensesEmitter.event;
 
   refresh(): void {
-    this._onDidChangeCodeLenses.fire();
+    this.onDidChangeCodeLensesEmitter.fire();
   }
 
   provideCodeLenses(document: vscode.TextDocument): vscode.CodeLens[] {
@@ -16,22 +16,21 @@ export class PlaywrightCodeLensProvider implements vscode.CodeLensProvider {
 
     const lenses: vscode.CodeLens[] = [];
     const items = parseTests(document);
-
-    // Add "Run All" at top of file
     const fileRange = new vscode.Range(0, 0, 0, 0);
+
     lenses.push(
       new vscode.CodeLens(fileRange, {
-        title: '▶ Run All',
+        title: 'Run All',
         command: 'playwrightSnippets.runFile',
         arguments: [document.uri.fsPath],
       }),
       new vscode.CodeLens(fileRange, {
-        title: '⬡ Debug All',
+        title: 'Debug All',
         command: 'playwrightSnippets.debugFile',
         arguments: [document.uri.fsPath],
       }),
       new vscode.CodeLens(fileRange, {
-        title: '⬡ Inspect',
+        title: 'Inspect All',
         command: 'playwrightSnippets.inspectFile',
         arguments: [document.uri.fsPath],
       })
@@ -43,41 +42,41 @@ export class PlaywrightCodeLensProvider implements vscode.CodeLensProvider {
       if (item.kind === 'test') {
         lenses.push(
           new vscode.CodeLens(range, {
-            title: '▶ Run',
+            title: 'Run',
             command: 'playwrightSnippets.runTest',
             arguments: [document.uri.fsPath, item.name],
           }),
           new vscode.CodeLens(range, {
-            title: '⬡ Debug',
+            title: 'Debug',
             command: 'playwrightSnippets.debugTest',
             arguments: [document.uri.fsPath, item.name],
           }),
           new vscode.CodeLens(range, {
-            title: '⬡ Debug with Inspector',
-            command: 'playwrightSnippets.debugInspectTest',
+            title: 'Inspect',
+            command: 'playwrightSnippets.inspectTest',
             arguments: [document.uri.fsPath, item.name],
           })
         );
-      } else {
-        // describe block — run all tests in the suite
-        lenses.push(
-          new vscode.CodeLens(range, {
-            title: '▶ Run Suite',
-            command: 'playwrightSnippets.runTest',
-            arguments: [document.uri.fsPath, item.name],
-          }),
-          new vscode.CodeLens(range, {
-            title: '⬡ Debug Suite',
-            command: 'playwrightSnippets.debugTest',
-            arguments: [document.uri.fsPath, item.name],
-          }),
-          new vscode.CodeLens(range, {
-            title: '⬡ Debug Suite with Inspector',
-            command: 'playwrightSnippets.debugInspectTest',
-            arguments: [document.uri.fsPath, item.name],
-          })
-        );
+        continue;
       }
+
+      lenses.push(
+        new vscode.CodeLens(range, {
+          title: 'Run Suite',
+          command: 'playwrightSnippets.runTest',
+          arguments: [document.uri.fsPath, item.name],
+        }),
+        new vscode.CodeLens(range, {
+          title: 'Debug Suite',
+          command: 'playwrightSnippets.debugTest',
+          arguments: [document.uri.fsPath, item.name],
+        }),
+        new vscode.CodeLens(range, {
+          title: 'Inspect Suite',
+          command: 'playwrightSnippets.inspectTest',
+          arguments: [document.uri.fsPath, item.name],
+        })
+      );
     }
 
     return lenses;

@@ -1,0 +1,41 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="28" fill="#09130F"/>
+  <rect x="24" y="24" width="912" height="492" rx="24" fill="#0E1D18" stroke="#214535" stroke-width="2"/>
+
+  <image href="playwright-logo.png" x="56" y="48" width="42" height="42"/>
+  <text x="112" y="68" fill="#9CE8BC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">PLAYWRIGHT STUDIO</text>
+  <text x="112" y="104" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="800">Inspect traces and reports quickly</text>
+  <text x="112" y="134" fill="#B8DCC7" font-family="Segoe UI, Arial, sans-serif" font-size="18">Open Trace Viewer and HTML reports from the same extension workflow.</text>
+
+  <rect x="56" y="170" width="420" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <text x="84" y="212" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Playwright tools</text>
+
+  <rect x="84" y="242" width="364" height="40" rx="10" fill="#173027"/>
+  <text x="102" y="268" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">Playwright Studio: Show Trace Viewer</text>
+
+  <rect x="84" y="296" width="364" height="40" rx="10" fill="#1A2824"/>
+  <text x="102" y="322" fill="#D6E8E0" font-family="Segoe UI, Arial, sans-serif" font-size="17">Playwright Studio: Show HTML Report</text>
+
+  <rect x="84" y="368" width="220" height="64" rx="14" fill="#13211C"/>
+  <text x="106" y="396" fill="#7DE0AC" font-family="Consolas, 'Courier New', monospace" font-size="16">trace.zip</text>
+  <text x="106" y="420" fill="#D6E8E0" font-family="Segoe UI, Arial, sans-serif" font-size="15">Pick a trace and open it</text>
+
+  <rect x="508" y="170" width="396" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <text x="536" y="212" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Debugging view</text>
+
+  <rect x="536" y="244" width="340" height="28" rx="8" fill="#173027"/>
+  <text x="556" y="263" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Trace Viewer</text>
+
+  <rect x="536" y="292" width="340" height="104" rx="16" fill="#13211C"/>
+  <rect x="556" y="314" width="118" height="18" rx="8" fill="#1A2824"/>
+  <rect x="708" y="314" width="120" height="18" rx="8" fill="#173027"/>
+  <text x="726" y="327" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">HTML report</text>
+  <rect x="556" y="346" width="188" height="18" rx="8" fill="#1A2824"/>
+  <rect x="556" y="378" width="148" height="18" rx="8" fill="#1A2824"/>
+  <line x1="536" y1="416" x2="876" y2="416" stroke="#244938" stroke-width="2"/>
+
+  <text x="536" y="438" fill="#B8DCC7" font-family="Segoe UI, Arial, sans-serif" font-size="16">
+    <tspan x="536" dy="0">Open traces and reports the moment</tspan>
+    <tspan x="536" dy="21">a Playwright test fails.</tspan>
+  </text>
+</svg>

@@ -1,0 +1,39 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="28" fill="#09130F"/>
+  <rect x="24" y="24" width="912" height="492" rx="24" fill="#0E1D18" stroke="#214535" stroke-width="2"/>
+
+  <image href="playwright-logo.png" x="56" y="48" width="42" height="42"/>
+  <text x="112" y="68" fill="#9CE8BC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">PLAYWRIGHT STUDIO</text>
+  <text x="112" y="104" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="800">Generate code without leaving VS Code</text>
+  <text x="112" y="134" fill="#B8DCC7" font-family="Segoe UI, Arial, sans-serif" font-size="18">Launch Playwright Codegen directly from the command palette.</text>
+
+  <rect x="56" y="170" width="412" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <text x="84" y="212" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Command Palette</text>
+
+  <rect x="84" y="238" width="356" height="40" rx="10" fill="#1A2824"/>
+  <text x="102" y="264" fill="#E8FFF0" font-family="Segoe UI, Arial, sans-serif" font-size="18">&gt; Playwright Studio</text>
+
+  <rect x="84" y="294" width="356" height="36" rx="8" fill="#143A2B"/>
+  <text x="102" y="318" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Playwright Studio: Open Codegen</text>
+
+  <rect x="84" y="342" width="356" height="36" rx="8" fill="#1A2824"/>
+  <text x="102" y="366" fill="#D6E8E0" font-family="Segoe UI, Arial, sans-serif" font-size="16">Playwright Studio: Run Test</text>
+
+  <rect x="84" y="390" width="356" height="36" rx="8" fill="#1A2824"/>
+  <text x="102" y="414" fill="#D6E8E0" font-family="Segoe UI, Arial, sans-serif" font-size="16">Playwright Studio: Show Trace Viewer</text>
+
+  <rect x="500" y="170" width="404" height="294" rx="18" fill="#111917" stroke="#244938" stroke-width="2"/>
+  <text x="528" y="212" fill="#F4FFF8" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Codegen flow</text>
+
+  <rect x="528" y="244" width="348" height="50" rx="12" fill="#173027"/>
+  <text x="548" y="275" fill="#A7F1C7" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Enter a starting URL</text>
+
+  <rect x="528" y="318" width="348" height="46" rx="12" fill="#1A2824"/>
+  <text x="548" y="347" fill="#D6E8E0" font-family="Consolas, 'Courier New', monospace" font-size="16">https://shop.example.com</text>
+
+  <rect x="528" y="392" width="152" height="40" rx="10" fill="#1FD27A"/>
+  <text x="580" y="418" fill="#062216" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="800">Launch</text>
+
+  <rect x="696" y="392" width="180" height="40" rx="10" fill="#173027"/>
+  <text x="736" y="418" fill="#E8FFF0" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700">Record actions</text>
+</svg>
